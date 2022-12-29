@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Message } from './Message';
 import { ChatResponse } from './Response';
+import { environment } from './../env/environment';
+
 
 
 @Injectable({
@@ -10,8 +12,7 @@ import { ChatResponse } from './Response';
 })
 export class AppService {
 
-  // private apiUrl = 'https://damp-beyond-01462.herokuapp.com/api'; 
-  private apiUrl = 'http://www.localhost:8080/api'; 
+  private apiUrl = environment.apiUrl; 
 
   constructor(private http: HttpClient) { }
 
