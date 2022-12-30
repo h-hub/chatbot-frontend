@@ -44,7 +44,7 @@ export class AppComponent {
     this.appService.sendMessage(new Message(message)).subscribe(
       chatResponse => 
       {
-        chatResponse = new ChatResponse(chatResponse.response),
+        chatResponse = new ChatResponse(chatResponse.response, chatResponse.cards),
         chatResponse.setType(Type.BOT),
         this.chats.push(chatResponse)
       });

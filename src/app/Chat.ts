@@ -7,3 +7,21 @@ export class Chat {
         this.dateTime = dt;
     }
 }
+
+export class Card {
+    header: String;
+    description: String;
+    imageUrl: URL;
+    link: URL;
+
+    constructor(
+        header: String,
+        description: String,
+        imageUrl: URL,
+        link: URL) {
+        this.header = header;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.link = link;
+    }
+}
