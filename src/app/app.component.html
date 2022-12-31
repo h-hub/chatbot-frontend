@@ -10,6 +10,7 @@
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let chat of chats; let i = index"
             [ngClass]="chat.type === 0 ? 'text-start' :'text-end'">
+
             <span *ngIf="chat.type === 0">You: </span>
             <span *ngIf="chat.type === 1">Bot: </span>
 
@@ -27,6 +28,13 @@
                 </div>
               </div>
             </div>
+
+            <div *ngIf="chat.quickReply != undefined" class="py-2">{{chat.quickReply.text}}</div>
+
+            
+            <ng-container *ngIf="chat.quickReply != undefined">
+              <button type="button" *ngFor="let reply of chat.quickReply.replies; let i = index" class="btn btn-info mx-1">{{reply.text}}</button>
+            </ng-container>
 
           </li>
         </ul>

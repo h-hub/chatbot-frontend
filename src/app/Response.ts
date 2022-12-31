@@ -1,11 +1,16 @@
+import { QuickReply } from "./QuickReply";
+
 export class ChatResponse {
+    [x: string]: any;
     response: String;
     type: Type | undefined;
     cards: Card[] | undefined;
+    quickReply: QuickReply | undefined;
 
-    constructor(rspns: String, cards?: Card[]) {
+    constructor(rspns: String, cards?: Card[], quickReply?: QuickReply) {
         this.response = rspns;
         this.cards = cards;
+        this.quickReply = quickReply;
     }
 
     setType(type: Type) {

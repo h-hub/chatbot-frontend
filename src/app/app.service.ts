@@ -20,7 +20,7 @@ export class AppService {
   sendMessage(message: Message): Observable<ChatResponse> {
     return this.http.post<ChatResponse>(this.apiUrl+"/df_text_query", message).pipe(
       map(chatResponse => new ChatResponse(chatResponse.response, 
-      chatResponse.cards?.map(val => new Card(val.header, val.description, val.imageUrl, val.link))))
+      chatResponse.cards?.map(val => new Card(val.header, val.description, val.imageUrl, val.link)), chatResponse.quickReply))
     );
   }
 }
