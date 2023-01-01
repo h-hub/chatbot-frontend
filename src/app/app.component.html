@@ -33,7 +33,12 @@
 
             
             <ng-container *ngIf="chat.quickReply != undefined">
-              <button type="button" *ngFor="let reply of chat.quickReply.replies; let i = index" class="btn btn-info mx-1">{{reply.text}}</button>
+              <button type="button" 
+              *ngFor="let reply of chat.quickReply.replies; let i = index" 
+              class="btn btn-info mx-1"
+              (click)="sendQuickReply(reply.text)">
+                {{reply.text}}
+              </button>
             </ng-container>
 
           </li>
