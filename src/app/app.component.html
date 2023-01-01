@@ -19,7 +19,8 @@
             <div class="row">
               <div class="col-sm-6 mt-3" *ngFor="let card of chat.cards; let i = index">
                 <div class="card">
-                  <img src="{{card.imageUrl}}" class="card-img-top" alt="...">
+                  <img  class="card-img-top" src="{{card.imageUrl}}"
+                        onerror="this.src='assets/writing_web.jpg';"/>
                   <div class="card-body">
                     <h5 class="card-title">{{card.header}}</h5>
                     <p class="card-text">{{card.description}}</p>
@@ -35,7 +36,7 @@
             <ng-container *ngIf="chat.quickReply != undefined">
               <button type="button" 
               *ngFor="let reply of chat.quickReply.replies; let i = index" 
-              class="btn btn-info mx-1"
+              class="btn btn-warning mx-1"
               (click)="sendQuickReply(reply.text)">
                 {{reply.text}}
               </button>
