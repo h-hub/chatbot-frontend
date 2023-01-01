@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Message } from './Message';
+import { EventMessage } from './EventMessage';
 import { ChatResponse, Card } from './Response';
 import { environment } from './../env/environment';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -19,6 +20,13 @@ export class AppService {
 
   sendMessage(message: Message): Observable<ChatResponse> {
     return this.http.post<ChatResponse>(this.apiUrl+"/df_text_query", message).pipe(
+      map(chatResponse => new ChatResponse(chatResponse.response, 
+      chatResponse.cards?.map(val => new Card(val.header, val.description, val.imageUrl, val.link)), chatResponse.quickReply))
+    );
+  }
+
+  sendEvent(message: EventMessage): Observable<ChatResponse> {
+    return this.http.post<ChatResponse>(this.apiUrl+"/df_event_query", message).pipe(
       map(chatResponse => new ChatResponse(chatResponse.response, 
       chatResponse.cards?.map(val => new Card(val.header, val.description, val.imageUrl, val.link)), chatResponse.quickReply))
     );

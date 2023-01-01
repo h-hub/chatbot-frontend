@@ -4,6 +4,7 @@ import { Message } from './Message';
 import { ChatResponse, Type } from './Response';
 import Cookies from 'universal-cookie';
 import { v4 as uuid } from 'uuid';
+import { EventMessage } from './EventMessage';
 
 
 @Component({
@@ -65,13 +66,25 @@ export class AppComponent {
     yourChat.setType(Type.USER);
     this.chats.push(yourChat)
 
-    this.appService.sendMessage(new Message(payload, this.cookie.get('userID'))).subscribe(
-      chatResponse => 
-      {
-        chatResponse = new ChatResponse(chatResponse.response, chatResponse.cards, chatResponse.quickReply),
-        chatResponse.setType(Type.BOT),
-        this.chats.push(chatResponse)
-      });
+    if(payload === 'stackoverflow'){
+      this.appService.sendEvent(new EventMessage(payload, this.cookie.get('userID'))).subscribe(
+        chatResponse => 
+        {
+          chatResponse = new ChatResponse(chatResponse.response, chatResponse.cards, chatResponse.quickReply),
+          chatResponse.setType(Type.BOT),
+          this.chats.push(chatResponse)
+        });
+    } else {
+      this.appService.sendMessage(new Message(payload, this.cookie.get('userID'))).subscribe(
+        chatResponse => 
+        {
+          chatResponse = new ChatResponse(chatResponse.response, chatResponse.cards, chatResponse.quickReply),
+          chatResponse.setType(Type.BOT),
+          this.chats.push(chatResponse)
+        });
+    }
+
+    
   }
 
 }

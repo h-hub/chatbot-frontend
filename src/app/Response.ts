@@ -1,7 +1,6 @@
 import { QuickReply } from "./QuickReply";
 
 export class ChatResponse {
-    [x: string]: any;
     response: String;
     type: Type | undefined;
     cards: Card[] | undefined;
